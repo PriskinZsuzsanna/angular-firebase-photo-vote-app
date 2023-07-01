@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angularvoteapp-b2d6d": {
+      "hosting": {
+        "angular-vote-app": [
+          "angularvoteapp-b2d6d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angularvoteapp-b2d6d"
+  }
+}
