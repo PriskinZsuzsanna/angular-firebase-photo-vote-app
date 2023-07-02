@@ -1,15 +1,23 @@
+<div class="filter"></div>
 <header>
     <section>
         <nav>
-            <button *ngIf="!this.auth.isLoggedIn()" (click)="this.auth.GoogleAuth()">Log in</button>
-            <button *ngIf="this.auth.isLoggedIn()" (click)="this.auth.logout()">Log out</button>
+           <button *ngIf="this.auth.isLoggedIn()" (click)="this.auth.logout()">Log out</button>
         </nav>
-        <h1>Send and vote for your favourite!</h1>
+    </section>
+    <section class="hero">
+        <h1>Best Photo Competition</h1>
+        <h2>Send a picture or vote for your favourite!</h2>
     </section>
 </header>
+
 
 <main>
     <router-outlet></router-outlet>
 </main>
 
-<footer>Copyright @2023 Priskin Zsuzsanna</footer>
+<footer>
+    <section>
+        <h4>Copyright @2023 Priskin Zsuzsanna</h4>
+    </section>
+</footer>

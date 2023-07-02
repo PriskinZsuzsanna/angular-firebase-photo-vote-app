@@ -1,4 +1,4 @@
-<section class="form">
+<section>
     <div class="form">
         <div class="form-group">
             <label>Title</label>
@@ -15,15 +15,15 @@
 </section>
 
 <section class="vote">
+    <p *ngIf="this.service.error">You can't vote multiple times!</p>
     <div class="img-grid">
-        <div *ngFor="let p of this.service.pictures" class="item">
+        <div *ngFor="let p of this.service.picturesMap | keyvalue" class="item">
             <figure>
-                <img src="{{p.url}}" alt="{{p.title}}">
-                <figcaption>{{p.title}}</figcaption>
+                <img src="{{p.value.url}}" alt="{{p.value.title}}">
+                <figcaption>{{p.value.title}}</figcaption>
             </figure>
-            <p>Votes: <span>{{p.voters.length - 1}}</span></p>
-            <button (click)="addVote(p)">Vote</button>
-            <p *ngIf="error">You can't vote multiple times!</p>
-            </div>
+            <p>Votes: <span>{{p.value.votes}}</span></p>
+            <button (click)="this.service.addVoter(p.value.displayName,p.key, p.value)">Vote</button>
+        </div>
     </div>
 </section>

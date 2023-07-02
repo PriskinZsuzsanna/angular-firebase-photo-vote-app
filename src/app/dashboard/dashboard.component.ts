@@ -12,33 +12,32 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
 
   actual: Picture = new Picture()
-  userEmail: string = ''
-  error: boolean = false
-  constructor(public service: VoteService, public auth: AuthService, private router: Router){
 
+  constructor(public service: VoteService, public auth: AuthService, private router: Router){
+    this.protectRoute()
+    this.loadUserData()
   }
 
   add(){
     this.service.add(this.actual)
+    this.actual = new Picture();
+    this.loadUserData();
   }
 
-  addVote(p:Picture){
-    console.log(this.getUserEmail())
-    console.log(p)
-    let prevVote = p.voters.filter(item => item == this.userEmail)
-    console.log(prevVote)
+  loadUserData() {
+    this.actual.displayName = this.auth.currentUser();
+    this.actual.email = this.auth.currentUserEmail();
+  }
 
-    if(prevVote.length == 0){
-      p.voters.push(this.userEmail)
-    } else {
-      this.error = true
+  protectRoute(){
+    if(this.auth.isLoggedIn() == false){
+      this.router.navigate(['login'])
     }
-    console.log(p)
   }
 
-  getUserEmail(){
-    this.userEmail = JSON.stringify( localStorage.getItem('email'))
-    return this.userEmail
-  }
+
+
+
+ 
   
 }
