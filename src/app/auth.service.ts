@@ -12,6 +12,12 @@ export class AuthService {
     
   }
 
+  protectRoute(){
+    if(this.isLoggedIn() == false){
+      this.router.navigate(['login'])
+    }
+  }
+
   GoogleAuth(){
     return this.AuthLogin(new GoogleAuthProvider());
   }
@@ -19,6 +25,7 @@ export class AuthService {
   logout(){
     localStorage.clear();
     this.afAuth.signOut();
+    this.protectRoute()
   }
 
   isLoggedIn(): boolean{

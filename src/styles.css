@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --primary: #f33178;
+    --primary: #86b8c5;
+    --light-gray: #cdcdcd;
+    --black: #222;
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -21,6 +28,8 @@ app-root {
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between;
+    padding-block: 2rem;
+    padding-inline: 5%;
     background: url(assets/mobile.jpg) no-repeat center/cover;
     position: relative;
     z-index: 1;
@@ -30,36 +39,64 @@ app-root {
     position: absolute;
     inset: 0;
     background: #ffffffa3;
+    background: #86b8c563;
     z-index: -1;
 }
 
 section {
-    padding-inline: 5%;
     padding-block: 1rem;
     text-align: center;
+    max-width: 1400px;
+    margin-inline: auto;
 }
 
-img {
-    max-width: 100%;
+h2 {
+    margin-block: 2rem;
 }
 
-button {
+button, .btn {
     border: none;
     outline: none;
-    background: #cdcdcd;
-    color: #1b1717;
-    padding: .7rem 3rem;
-    
-    border-radius: .4rem;
+    background: var(--primary);
+    color: #fff;
+    padding: .7rem 0;
+    font-size: 1rem;
+    width: 140px;
+    border-radius: .5rem;
+    scale: 1;
+    transition: all .3s ease-in-out;
     cursor: pointer;
+}
+
+button:hover {
+    scale: 1.05;
+}
+
+.btn {
+    background: var(--black);
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.login-btn {
+    width: 200px;
 }
 
 .form {
     width: 100%;
-    padding: 1rem;
+    margin-inline: auto;
+    padding: 1rem 2rem;
     border-radius: 1rem;
-    background: #ffffffa3;
+    background:#2222222d;
+    background: #faf6fa73;
     backdrop-filter: blur(15px);
+    box-shadow: 1px 2px 3px #efefef;
+}
+
+label {
+   color: var(--primary);
+   font-weight: bold;
+   font-size: 1.2rem;
 }
 
 .form-group {
@@ -73,22 +110,76 @@ button {
 }
 
 .form-group button {
-    margin-top: 1rem;
+    margin-top: 2rem;
+    align-self: center;
 }
 
 input {
     outline: none;
     border: none;
-    background: #cdcdcd;
+    background: #fff;
+    box-shadow: 1px 2px 5px var(--light-gray);
     padding: .5rem;
     border-radius: .4rem;
 }
 
+.vote {
+    max-width: 100%;
+}
+
+.img-grid {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 1400px;
+}
+
 .item {
-    width: 300px;
-    background:#222;
-    color: #fff;
-    padding: 1rem;
+    max-width: 100%;
+    background:#2222222d;
+    background: #faf6fa73;
+    padding: 2rem 1rem;
+    margin-top: 1rem;
+    border-radius: .8rem;
+    backdrop-filter: blur(20px);
+    box-shadow: 1px 2px 3px #efefef;
+    scale: 1;
+    transition: all .3s ease-in-out;
+}
+
+.item:hover {
+    scale: 1.03;
+}
+
+figure {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+img {
+    max-width: 100%;
+    border-radius: .6rem;
+}
+
+figcaption {
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.votes {
+    /*position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    translate: -50%;*/
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 footer {
@@ -96,8 +187,48 @@ footer {
     font-size: 1.2rem;
 }
 
+.error {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    background: #faf6fa73;
+    padding: 1rem;
+    color: var(--primary);
+    font-weight: bold;
+    border-radius: 1rem;
+    opacity: 1;
+    transition: all .3s ease-in-out;
+}
+
+.error.hidden {
+    opacity: 0;
+}
+
+@media (min-width: 390px){
+    .votes {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 768px){
+    .img-grid {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-gap: 1rem;
+    }
+    
+    .item {
+        margin-top: 0;
+        height: 100%;
+    }
+
+}
+
 @media (min-width :1100px){
     app-root {
         background: url(assets/desktop.jpg) no-repeat center/cover;
+    }
+
+    .img-grid {
+        grid-template-columns: repeat(3,1fr);
     }
 }

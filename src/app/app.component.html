@@ -7,7 +7,7 @@
     </section>
     <section class="hero">
         <h1>Best Photo Competition</h1>
-        <h2>Send a picture or vote for your favourite!</h2>
+        <h2 *ngIf="!this.auth.isLoggedIn()">Send a picture or vote for your favourite!</h2>
     </section>
 </header>
 

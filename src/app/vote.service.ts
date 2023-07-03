@@ -36,11 +36,16 @@ export class VoteService {
 
   addVoter(name:string, key:any, value:any) {
     console.log(this.voters)
+    console.log(name)
+    console.log(this.voters.find(t => t == name) == undefined)
     if (this.voters.find(t => t == name) == undefined) {
       this.db.list<string>('voters').push(name);
       this.edit(key, value)
     } else {
       this.error = true
+      setTimeout(()=> {
+        this.error = false
+      },3000)
     }
   }
 

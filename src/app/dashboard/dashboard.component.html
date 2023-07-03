@@ -1,5 +1,6 @@
 <section>
     <div class="form">
+        <h2>Send a picture!</h2>
         <div class="form-group">
             <label>Title</label>
             <input [(ngModel)]="actual.title" type="text">
@@ -14,16 +15,19 @@
     </div>
 </section>
 
-<section class="vote">
-    <p *ngIf="this.service.error">You can't vote multiple times!</p>
+<section>
+    <h2>Vote for your favourite!</h2>
+    <p [ngClass]="this.service.error ? 'error' : 'error hidden'">You can't vote multiple times!</p>
     <div class="img-grid">
         <div *ngFor="let p of this.service.picturesMap | keyvalue" class="item">
             <figure>
-                <img src="{{p.value.url}}" alt="{{p.value.title}}">
                 <figcaption>{{p.value.title}}</figcaption>
+                <img src="{{p.value.url}}" alt="{{p.value.title}}">
+                <div class="votes">
+                    <p class="btn">Votes: <span>{{p.value.votes}}</span></p>
+                    <button (click)="this.service.addVoter(this.auth.currentUser(),p.key, p.value)">Vote</button>
+                </div>
             </figure>
-            <p>Votes: <span>{{p.value.votes}}</span></p>
-            <button (click)="this.service.addVoter(p.value.displayName,p.key, p.value)">Vote</button>
         </div>
     </div>
 </section>

@@ -14,7 +14,7 @@ export class DashboardComponent {
   actual: Picture = new Picture()
 
   constructor(public service: VoteService, public auth: AuthService, private router: Router){
-    this.protectRoute()
+    this.auth.protectRoute()
     this.loadUserData()
   }
 
@@ -28,14 +28,6 @@ export class DashboardComponent {
     this.actual.displayName = this.auth.currentUser();
     this.actual.email = this.auth.currentUserEmail();
   }
-
-  protectRoute(){
-    if(this.auth.isLoggedIn() == false){
-      this.router.navigate(['login'])
-    }
-  }
-
-
 
 
  
